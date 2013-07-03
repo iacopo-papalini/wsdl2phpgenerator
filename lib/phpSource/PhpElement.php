@@ -13,6 +13,21 @@
 abstract class PhpElement
 {
   /**
+   * These strings cannot be used as function or class names
+   * @see http://www.php.net/manual/en/reserved.keywords.php
+   */
+  const PHP_RESERVED = "|__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|new|or|print|private|protected|public|require|require_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|";
+
+  protected static function bonifyIdentifier ($identifier)
+  {
+    if (strpos(self::PHP_RESERVED, strtolower("|$identifier|")) !== false)
+    {
+      $identifier .= "_";
+    }
+    return $identifier;
+  }
+
+  /**
    *
    * @var string The access of the function |public|private|protected
    * @access protected

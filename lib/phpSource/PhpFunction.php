@@ -51,7 +51,7 @@ class PhpFunction extends PhpElement
   function __construct($access, $identifier, $params, $source, PhpDocComment $comment = null)
   {
     $this->access = $access;
-    $this->identifier = $identifier;
+    $this->identifier = self::bonifyIdentifier($identifier);
     $this->params = $params;
     $this->source = $source;
     $this->comment = $comment;
