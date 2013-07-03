@@ -85,7 +85,7 @@ class ComplexType extends Type
       $constructorSource .= '  $this->'.$name.' = $'.$name.';'.PHP_EOL;
       $constructorComment->addParam(PhpDocElementFactory::getParam($type, $name, ''));
       $constructorComment->setAccess(PhpDocElementFactory::getPublicAccess());
-      $constructorParameters .= ', $'.$name;
+      $constructorParameters .= ', $'.$name." = null";
     }
 
     $constructorParameters = substr($constructorParameters, 2); // Remove first comma
