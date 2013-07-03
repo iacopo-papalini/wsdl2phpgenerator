@@ -103,6 +103,11 @@ class Config
    * @var string If multiple class got the name, the first will be used, other will be ignored
    */
   private $sharedTypes;
+  
+  /**
+   * @var boolean whether the include statemens should be generated
+   */
+  private $includeStatements;
 
   /**
    * Sets all variables
@@ -121,8 +126,9 @@ class Config
    * @param string $prefix
    * @param string $suffix
    * @param string $sharedTypes
+   * @param bool $includeStatements
    */
-  public function __construct($inputFile, $outputDir, $verbose = false, $oneFile = false, $classExists = false, $noTypeConstructor = false, $namespaceName = '', $optionsFeatures = array(), $wsdlCache = '', $compression = '', $classNames = '', $prefix = '', $suffix = '', $sharedTypes = false)
+  public function __construct($inputFile, $outputDir, $verbose = false, $oneFile = false, $classExists = false, $noTypeConstructor = false, $namespaceName = '', $optionsFeatures = array(), $wsdlCache = '', $compression = '', $classNames = '', $prefix = '', $suffix = '', $sharedTypes = false, $includeStatements = false)
   {
     $this->namespaceName = trim($namespaceName);
     $this->oneFile = $oneFile;
@@ -147,6 +153,7 @@ class Config
     $this->prefix = trim($prefix);
     $this->suffix = trim($suffix);
     $this->sharedTypes = trim($sharedTypes);
+    $this->includeStatements = $includeStatements;
   }
 
   /**
@@ -293,5 +300,15 @@ class Config
   {
     return $this->sharedTypes;
   }
+
+	/**
+	 *
+	 * @return the $includeStatements
+	 */
+	public function getIncludeStatements ()
+	{
+		return $this->includeStatements;
+	}
+
 }
 

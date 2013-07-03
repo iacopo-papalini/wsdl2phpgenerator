@@ -88,7 +88,7 @@ class PhpClass extends PhpElement
     $this->classExists = $classExists;
     $this->comment = $comment;
     $this->final = $final;
-    $this->identifier = $identifier;
+    $this->identifier = self::bonifyIdentifier($identifier);
     $this->access = '';
     $this->extends = $extends;
     $this->constants = array();

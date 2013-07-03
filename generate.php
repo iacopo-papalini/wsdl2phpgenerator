@@ -57,7 +57,7 @@ catch (Exception $e)
 }
 
 // Start
-$cli = new Cli('wsdl2php', '[OPTIONS] -i wsdlfile -o directory', '1.5.2');
+$cli = new Cli('wsdl2php', '[OPTIONS] -i wsdlfile -o directory', '1.5.2-dada');
 $cli->addFlag('-e', _('If all classes should be guarded with if(!class_exists) statements'), true, false);
 $cli->addFlag('-t', _('If no type constructor should be generated'), true, false);
 $cli->addFlag('-s', _('If the output should be a single file'), true, false);
@@ -77,6 +77,7 @@ $cli->addFlag('--cacheMemory', _('Adds the option to cache the wsdl in memory to
 $cli->addFlag('--cacheBoth', _('Adds the option to cache the wsdl in memory and on disk to the client'), true, false);
 $cli->addFlag('--gzip', _('Adds the option to compress the wsdl with gzip to the client'), true, false);
 $cli->addFlag('--sharedTypes', _('Adds the option to use share types'), true, false);
+$cli->addFlag('--include-statements', _('Adds the \'include\' statement in the Services class for all the generated code (useful if you don\'t use an autoloader'), true, false);
 $cli->addFlag('-h', _('Show this help'), true, false);
 
 $cli->addAlias('-e', '--classExists');
@@ -141,6 +142,7 @@ $namespaceName = $cli->getValue('-n');
 $prefix = $cli->getValue('-p');
 $suffix = $cli->getValue('-q');
 $sharedTypes = $cli->getValue('--sharedTypes');
+$includeStatements = $cli->getValue('--include-statements');
 
 $optionsArray = array();
 if ($cli->getValue('--singleElementArrays'))
@@ -178,7 +180,9 @@ if ($cli->getValue('--gzip'))
   $gzip = 'SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP';
 }
 
-$config = new Config($inputFile, $outputDir, $verbose, $singleFile, $classExists, $noTypeConstructor, $namespaceName, $optionsArray, $wsdlCache, $gzip, $classNames, $prefix, $suffix);
+
+
+$config = new Config($inputFile, $outputDir, $verbose, $singleFile, $classExists, $noTypeConstructor, $namespaceName, $optionsArray, $wsdlCache, $gzip, $classNames, $prefix, $suffix, $includeStatements);
 
 $generator = Generator::instance();
 $generator->generate($config);
