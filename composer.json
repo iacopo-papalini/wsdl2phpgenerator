@@ -1,6 +1,6 @@
 {
     "name": "register.it/wsdl2phpgenerator",
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.3.0"
     }
 }
