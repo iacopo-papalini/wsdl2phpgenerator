@@ -111,8 +111,8 @@ class Service
 
     // Create the constructor
     $comment = new PhpDocComment();
-    $comment->addParam(PhpDocElementFactory::getParam('array', 'config', 'A array of config values'));
     $comment->addParam(PhpDocElementFactory::getParam('string', 'wsdl', 'The wsdl file to use'));
+    $comment->addParam(PhpDocElementFactory::getParam('array', 'config', 'A array of config values'));
     $comment->setAccess(PhpDocElementFactory::getPublicAccess());
 
     $source = '  foreach(self::$classmap as $key => $value)
@@ -125,7 +125,7 @@ class Service
   '.$this->generateServiceOptions($config).'
   parent::__construct($wsdl, $options);'.PHP_EOL;
 
-    $function = new PhpFunction('public', '__construct', 'array $options = array(), $wsdl = \''.$config->getInputFile().'\'', $source, $comment);
+    $function = new PhpFunction('public', '__construct', '$wsdl, array $options = array()', $source, $comment);
 
     // Add the constructor
     $this->class->addFunction($function);
