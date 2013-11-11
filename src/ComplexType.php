@@ -78,7 +78,7 @@ class ComplexType extends Type
       $name = Validator::validateNamingConvention($member->getName());
       $comment = new PhpDocComment();
       if ($config->getPrefix() != '')
-        $type = $config->getPrefix().'_'.$type;
+        $type = $config->getPrefix().$type;
 
       $comment->setVar(PhpDocElementFactory::getVar($type, $name, ''));
       $comment->setAccess(PhpDocElementFactory::getPublicAccess());
